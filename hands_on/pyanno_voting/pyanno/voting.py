@@ -100,3 +100,7 @@ def labels_frequency(annotations, nclasses):
         freq[k] is the frequency of elements of class k in `annotations`, i.e.
         their count over the number of total of observed (non-missing) elements
     """
+    annotations = np.array(annotations)
+    annotations = annotations[annotations >= 0]
+    counts = np.bincount(annotations, minlength=nclasses)
+    return counts/float(counts.sum())
